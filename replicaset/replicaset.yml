@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: MYAPP
+  labels:
+    app: MYAPP
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      app: MYAPP
+      # From here we define the specs of the Pod
+  template:
+    metadata:
+      labels:
+        app: MYAPP
+    spec:
+      containers:
+      - name: MYAPP
+        image: nginx/nginx
+        ports:
+        - name: web
+          containerPort:  80
+          protocol: TCP

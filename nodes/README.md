@@ -1,4 +1,6 @@
-# Master Node
+# Nodes
+
+## Master node
 
 The master node is the one in charge of controlling the K8s cluster. All other nodes are called worker nodes.
 
@@ -52,7 +54,7 @@ To choose on which node to run the pod in takes into account:
 - Affinity and anti-affinity specifications
 - Data locality
 
-# Worker Node
+## Worker Node
 
 It is a physical or virtual machine. Together many worker nodes form a cluster. Pods run inside a node.
 
