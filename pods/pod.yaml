@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "myapp-pod"
+  namespace: default
+  labels: #la les to identify and group related sets of objects and resources
+    app: "myapp-pod"
+spec:
+  containers:
+  - name: myapp-pod
+    image: "debian-slim:latest" #Container image
+    resources: #set resource limits
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+    env:
+    - name: DB_HOST
+      valueFrom:
+        configMapKeyRef:
+          name: MYAPP
+          key: DB_HOST
+    ports:
+    - containerPort:  80 #port in which the container listens to
+      name:  http
