@@ -21,7 +21,7 @@ Typical uses:
 - Running a logs collection daemon on every node
 - Running a node monitoring daemon on every node
 
-### CheatSheet
+### CheatSheet DaemonSet
 
 ```shell
 kubectl apply -f [daemonset.yaml]
@@ -46,3 +46,26 @@ Use cases are:
 
 - Stable, unique network identifiers
 - Stable, databases using persistent storage.
+
+How to make a request to these instances?
+
+To Write use **hostname:mysql-0.mysql**
+
+To Read use **hostname:mysql** (k8s will load balance the call through all of the instances)
+
+N.B.
+**Containers are stateless by design**
+
+And StatefulSets offers a solution for stateful scenarios.
+Would be better to use a Cloud provider DB.
+Deleting a StatefulSet will not delete the PVC (needs to be done manually).
+
+### CheatSheet StatefulSet
+
+```shell
+kubectl apply -f [statefulset.yaml]
+kubectl get sts
+kubectl describe sts [rsName]
+kubectl delete -f [statefulset.yaml]
+kubectl delete sts [rsName]
+```

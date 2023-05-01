@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: nginx # has to match .spec.template.metadata.labels
-  serviceName: "nginx" #The nginx service must have clusterIP: None
+  serviceName: "nginx" #The nginx service must have clusterIP: None -> this creates a "headless service"
   replicas: 3 # by default is 1
   template:
     metadata:

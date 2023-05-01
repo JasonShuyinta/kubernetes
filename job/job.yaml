@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: MYAPP
+  namespace: default
+  labels:
+    app: MYAPP
+spec:
+  activeDeadlineSeconds: 30 # Max duration to run
+  parallelism: 3 # How many pods should run in parallel
+  completions: 3 #How many successful pod completions are needed to mark a job completed
+  template:
+    metadata:
+      name: MYAPP
+      labels:
+        app: MYAPP
+    spec:
+      containers:
+      - name: MYAPP
+        image: python:3.7.6-alpine3.10
+        command: ['sh', '-c', 'python3 manage.py makemigrations && python3 manage.py migrate']
+        env:
+        - name: ENV_NAME
+          value: ENV_VALUE
+      restartPolicy: OnFailure #Default is Always
+      dnsPolicy: ClusterFirst
