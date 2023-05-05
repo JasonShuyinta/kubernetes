@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: mongo # has to match .spec.template.metadata.labels
+  serviceName: "mongo"
+  replicas: 3 # by default is 1
+  template:
+    metadata:
+      labels:
+        app: mongo # has to match .spec.selector.matchLabels
+    spec:
+      containers:
+      - name: mongo
+        image: mongo
+        ports:
+        - containerPort: 27017
+          name: mongodb
+        volumeMounts:
+        - name: mongodb-persistent-storage
+          mountPath: /data/db #it has to be this path for mongodb
+      volumes:
+        - name: mongodb-persistent-storage
+          persistentVolumeClaim:
+            claimName: mongodb-pvc #you need to define a persisentVolume or a persistentVolumeClaim to store data
