@@ -10,6 +10,8 @@ with the StatefulSet.
 - StatefulSets required a Headless Service. 
 - It is advisable to create a PersistentVolume or PersistentVolumeClaim to store data
 
+To create a Volume, refer to the volume section in this repository
+
 ### Headless Service
 
 Is a service with a service IP but instead of load-balancing it will return the IPs of our associated pods.
