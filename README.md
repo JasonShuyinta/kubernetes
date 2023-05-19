@@ -1,5 +1,10 @@
 # Kubernetes
 
+I'm creating this Kubernetes cheatsheet in order to identify and debug common problems and always have useful commands at hand at any time. 
+The project is still in the making so please be sure to double-check before using any of the commands showed in this repository.
+
+Feel free to make requests for updates or correct mistakes.
+
 Useful image for Troubleshooting a Kubernetes infrastructure
 
 (image courtesy of [ByteByteGo](https://www.linkedin.com/posts/bytebytego_systemdesign-coding-interviewtips-activity-7059045288400805888--Esb?utm_source=share&utm_medium=member_desktop))
