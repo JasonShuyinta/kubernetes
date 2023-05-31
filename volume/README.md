@@ -16,3 +16,9 @@ When creating and applying a **PersistentVolume* under the "state" columns you w
 
 ## StorageClass
 When you need a type of storage you can define it in this yaml file and it will create the PV automatically if it does not already exist.
+
+
+## Provisioning
+PVs may be provisioned statically or dynamically.
+- Static: a cluster admin creates a number of PVs. Ther carry the details of real storage (cloud, nfs, local-storage). They exist in K8s API and are available for consumption.
+- Dynamic: when none of the static PVs match the PVCs, the cluster may try to dynamically provision a volume for that PVC.
