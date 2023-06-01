@@ -89,6 +89,29 @@ Is a service with a service IP but instead of load-balancing it will return the 
 This allows to interact directly with the pods instead of a proxy. All you have to do is define
 the clusterIP as None (use headlessService.yaml as reference).
 
+When creating a Headless service you can access the pod using their DNS entry: podname.servicename.namespace.svc.cluster.local.27017
+For example let us have this HeadlessService
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  ports:
+    - name: mongo
+      port: 27017
+      targetPort: 27017
+  clusterIP: None
+  selector:
+    app: mongo
+```
+In this way we can select the "Master" node to do the Writes on the DB and the "Slave" nodes to do the Reads from the DB.
+
+The Master node would be contacted using its DNS which would be:
+
+**mongo-0.mongo.default.svc.cluster.local:27017**
+
 ## Cheatsheet
 ```shell
 kubectl apply -f [statefulset.yml]
