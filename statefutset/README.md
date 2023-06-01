@@ -112,6 +112,8 @@ The Master node would be contacted using its DNS which would be:
 
 **mongo-0.mongo.default.svc.cluster.local:27017**
 
+Remember: Headless services cannot be access from outside the Cluster!
+
 ## Cheatsheet
 ```shell
 kubectl apply -f [statefulset.yml]
