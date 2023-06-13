@@ -10,6 +10,15 @@ Useful image for Troubleshooting a Kubernetes infrastructure
 (image courtesy of [ByteByteGo](https://www.linkedin.com/posts/bytebytego_systemdesign-coding-interviewtips-activity-7059045288400805888--Esb?utm_source=share&utm_medium=member_desktop))
 ![1683007546827](https://user-images.githubusercontent.com/50492920/235598157-d14fc5c6-de4c-477e-9fe6-b1d666697aab.jpg)
 
+
+## Minikube vs Kubernetes Cluster
+
+The main difference is that minikube has a single node that acts both as a master and as a worker node, thus removing some of the network complexity.
+
+That's why when using Kubernetes Cluster, you cannot just build your docker images locally, but you need them to build on the node from where you will deploy your pods.
+
+That's why it is better to use a customer container registry from where to retrieve the images each time you want to deploy something.
+
 ## Useful links
 
 - [Sealed Secrets for K8s with GitOps](https://piotrminkowski.com/2022/12/14/sealed-secrets-on-kubernetes-with-argocd-and-terraform/)
