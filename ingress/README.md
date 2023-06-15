@@ -60,3 +60,20 @@ Each path in an Ingress is required to have a corresponding path type. Paths tha
 |Kind   | Path(s)   | Request path(s)   | Mathches? |
 |-------|-----------|-------------------|-----------|
 |Prefix | /         |(all paths)        |Yes        |
+|Exact	|/foo	    |/foo	            |Yes
+|Exact	|/foo	    |/bar	            |No
+|Exact	|/foo	    |/foo/	            |No
+|Exact	|/foo/	    |/foo	            |No
+|Prefix	|/foo	    |/foo, /foo/	    |Yes
+|Prefix	|/foo/	    |/foo, /foo/	    |Yes
+|Prefix	|/aaa/bb	|/aaa/bbb	        |No
+|Prefix	|/aaa/bbb	|/aaa/bbb	        |Yes
+|Prefix	|/aaa/bbb/	|/aaa/bbb	        |Yes, ignores trailing slash
+|Prefix	|/aaa/bbb	|/aaa/bbb/	        |Yes, matches trailing slash
+|Prefix	|/aaa/bbb	|/aaa/bbb/ccc	    |Yes, matches subpath
+|Prefix	|/aaa/bbb	|/aaa/bbbxyz	    |No, does not match string prefix
+|Prefix	|/, /aaa	|/aaa/ccc	        |Yes, matches /aaa prefix
+|Prefix	|/, /aaa, /aaa/bbb  |	/aaa/bbb    |Yes, matches /aaa/bbb prefix
+|Prefix	|/, /aaa, /aaa/bbb  |	/ccc    |Yes, matches / prefix
+|Prefix	|/aaa	    |/ccc   |No, uses default backend
+|Mixed	|/foo (Prefix), /foo (Exact)    |/foo   |Yes, prefers Exact
