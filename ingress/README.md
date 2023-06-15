@@ -77,3 +77,4 @@ Each path in an Ingress is required to have a corresponding path type. Paths tha
 |Prefix	|/, /aaa, /aaa/bbb  |	/ccc    |Yes, matches / prefix
 |Prefix	|/aaa	    |/ccc   |No, uses default backend
 |Mixed	|/foo (Prefix), /foo (Exact)    |/foo   |Yes, prefers Exact
+
