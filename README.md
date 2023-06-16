@@ -37,3 +37,7 @@ Jib is a tool that lets you create Docker images without using Docker.
 It's a maven/gradle plugin that you can integrate into your Java project.
 
 One of the best practices that Jib uses is that it does not run your container as root.
+
+#### Kompose
+
+As per the official documentation, kompose is a tool that let's you transform your docker compose file into different kubernetes files (deployment and services).
