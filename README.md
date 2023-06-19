@@ -41,3 +41,9 @@ One of the best practices that Jib uses is that it does not run your container a
 #### Kompose
 
 As per the official documentation, kompose is a tool that let's you transform your docker compose file into different kubernetes files (deployment and services).
+
+#### ClusterWatch
+
+Another very cool project is [ClusterWatch](https://github.com/oslabs-beta/ClusterWatch) :
+
+ClusterWatch is an open-source tool which simplifies and provides an all-in-one hub for Kubernetes cluster monitoring. It reduces the need for DevOps engineers to configure their own Kubernetes monitoring stacks, and automates the process so you can get vital cluster information from various different tools, all in one place, in just a few seconds.
