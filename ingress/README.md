@@ -78,3 +78,37 @@ Each path in an Ingress is required to have a corresponding path type. Paths tha
 |Prefix	|/aaa	    |/ccc   |No, uses default backend
 |Mixed	|/foo (Prefix), /foo (Exact)    |/foo   |Yes, prefers Exact
 
+To add a TLS certificate to allow https connections to your Ingress, simply create a secret with your certificate adding as key: *tls.key* and *tls.crt* , obviously encoded as a Base64 string. 
+
+You can do that on linux by issuing the command: 
+```shell
+cat my-key-file.key | base64 -w 0
+
+cat my-cert-file.pem | base64 -w 0
+```
+
+After you have configured your secret in the same namespace as your Ingress resource, you can add the configuration to the yaml file of the Ingress as follows:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+spec:
+   tls:
+    - secretName: tls-secret
+      hosts:
+        - your-host.com
+  ingressClassName: nginx-example
+  rules:
+  - http:
+      paths:
+      - path: /testpath
+        pathType: Prefix
+        backend:
+          service:
+            name: test
+            port:
+              number: 80
+```
+
