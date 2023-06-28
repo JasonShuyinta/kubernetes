@@ -27,3 +27,5 @@ helm upgrade chart-name ./chart-directory
 helm install/upgrade chart-name ./chart-directory -f ./values-file.yaml
 
 ```
+
+Helm is particularly useful when you are working with multiple environments (eg. dev, test, prod) where some of these value changes and you want to avoid to manually search and change on each and every yaml file of your kubernetes cluster.
