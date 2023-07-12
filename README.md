@@ -47,3 +47,13 @@ As per the official documentation, kompose is a tool that let's you transform yo
 Another very cool project is [ClusterWatch](https://github.com/oslabs-beta/ClusterWatch) :
 
 ClusterWatch is an open-source tool which simplifies and provides an all-in-one hub for Kubernetes cluster monitoring. It reduces the need for DevOps engineers to configure their own Kubernetes monitoring stacks, and automates the process so you can get vital cluster information from various different tools, all in one place, in just a few seconds.
+
+#### K9S
+
+[K9S](https://k9scli.io/) is a tool that lets you monitor your cluster resources on a colorful terminal, so you never have to leave it to control if it's functioning properly. 
+
+You can either download and install the binary from their site or use the docker images as follows:
+
+```shell
+docker run --rm -it -v $KUBECONFIG:/root/.kube/config quay.io/derailed/k9s
+```
