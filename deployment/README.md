@@ -16,6 +16,15 @@ CPU represents compute processing and is specified in units of Kubernetes CPUs. 
 
 Limits and requests for CPU resources are measured in cpu units. In Kubernetes, 1 CPU unit is equivalent to 1 physical CPU core, or 1 virtual core, depending on whether the node is a physical host or a virtual machine running inside a physical machine.
 
+It is also possible to tell K8S on which node you want to deploy your pod. You can do this by adding the **nodeSelector** field. All you have to do is gather the label of the k8s node and add it to the field. Remember, it needs to be unique as k8s needs to be sure on which node to deploy your pod.
+
+
+```yaml
+# e.g. node label is : kubernetes.io/hostname: devkube01
+nodeSelector:
+  kubernetes.io/hostname: devkube01
+```
+
 Example:
 
 The following Pod has two containers. Both containers are defined with a request for 0.25 CPU and 64MiB (226 bytes) of memory. Each container has a limit of 0.5 CPU and 128MiB of memory. You can say the Pod has a request of 0.5 CPU and 128 MiB of memory, and a limit of 1 CPU and 256MiB of memory.
