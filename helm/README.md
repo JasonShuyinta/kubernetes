@@ -26,9 +26,15 @@ helm upgrade chart-name ./chart-directory
 #You can apply a custom value file to the templated files
 helm install/upgrade chart-name ./chart-directory -f ./values-file.yaml
 
+# To make sure you are following the best practices when writing Helm Charts
+helm lint chart-name
+
 ```
 
 Helm is particularly useful when you are working with multiple environments (eg. dev, test, prod) where some of these value changes and you want to avoid to manually search and change on each and every yaml file of your kubernetes cluster.
+
+### Subcharts
+Helm is able to create subcharts as well. Under the "chart" folder you can insert other charts and add dependencies to the main chart so that you only need one command to launch all of the charts. 
 
 
 ## Artifact Hub 
