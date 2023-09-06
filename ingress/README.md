@@ -42,6 +42,43 @@ The name of an Ingress object must be a valid DNS subdomain name.
 
 If the ingressClassName is omitted, a default Ingress class should be defined.
 
+An Ingress object can also expose multiple backends (or better, services) simply by adding them as a list like in the following example:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-name
+  annotations:
+    nginx.org/proxy-connect-timeout: "65s"
+    nginx.org/proxy-read-timeout: "65s"
+    nginx.org/proxy-send-timeout: "65s"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: my-host.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-gateway
+            port:
+              number: 8000
+      - path: /admin-console
+        pathType: Prefix
+        backend:
+          service:
+            name: admin-console-service
+            port:
+              number: 8001
+```
+
+As you can see from above, when a request is trying to reach **my-host.com/admin-console** instead of going to the *my-gateway* service, it will be redirected to the *admin-console-service* instead.
+
+**NOTE**: on GKE, the exposed service, in this case *my-gateway* and *admin-console-service* are required to be of type NodePort or LoadBalancer. The type ClusterIP is not allowed for Ingress-exposed services.
+
 ### Ingress rules
 
 Each HTTP rule contains the following information:
