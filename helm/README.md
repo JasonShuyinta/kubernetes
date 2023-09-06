@@ -33,6 +33,27 @@ helm lint chart-name
 
 Helm is particularly useful when you are working with multiple environments (eg. dev, test, prod) where some of these value changes and you want to avoid to manually search and change on each and every yaml file of your kubernetes cluster.
 
+### Conditionals
+Helm is able to handle conditions during the evaluation of the template when creating your chart. As an example:
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.name }}
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "65"
+{{- if .Values.gcp }}
+    kubernetes.io/ingress.global-static-ip-name: {{ .Values.staticIPName | quote }}
+    kubernetes.io/ingress.class: {{ .Values.ingressGcpClass | quote }}
+{{- end}}
+spec:
+{{- if not .Values.gcp }}
+  ingressClassName: {{ .Values.className }}
+{{- end }}
+```
+
+In the example above, if in your *values.yaml* file ***gcp: true*** then if will add the annotations to your Ingress. On the other hand if it's not true, it will not add them but it will add the ingressClassName.
+
 ### Subcharts
 Helm is able to create subcharts as well. Under the "chart" folder you can insert other charts and add dependencies to the main chart so that you only need one command to launch all of the charts. 
 
