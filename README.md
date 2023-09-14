@@ -54,6 +54,28 @@ ClusterWatch is an open-source tool which simplifies and provides an all-in-one 
 
 You can either download and install the binary from their site or use the docker images as follows:
 
+#### Kubernetes API
+
+There is a way in which you can view the Kubernetes API using OpenAPI specification and swagger-ui. 
+
+```shell
+kubectl proxy --port=8080
+```
+
+Once kubectl is proxying the Kubernetes API itself,  you can download the swagger.json file:
+
+```shell
+curl localhost:8080/openapi/v2 > k8s-swagger.json
+```
+
+After you've downloaded the swagger you can now use Docker to run swagger ui and view the API's:
+
+```shell
+docker run --rm -p 80:8080 -e SWAGGER_JSON=/k8s-swagger.json -v $(pwd)/k8s-swagger.json:/k8s-swagger.json swaggerapi/swagger-ui
+```
+
+After this you can reach http://localhost and view the results
+
 ```shell
 docker run --rm -it -v $KUBECONFIG:/root/.kube/config quay.io/derailed/k9s
 ```
