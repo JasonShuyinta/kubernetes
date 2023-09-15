@@ -149,3 +149,8 @@ spec:
               number: 80
 ```
 
+## GKE
+
+When deploying an Ingress in GKE remember that it is recommended to use GCE as your Ingress Controller.
+
+There are some differences that apply when using GCE instead of  Nginx. For example it is recommended to use ImplementationSpecific instead of Prefix. In addition to that you might have to apply a BackendConfig to achieve the same result you achieve with annotations in Ingress of type Nginx. The BackendConfig will then be attached to a specific service to add the configuration desired.
