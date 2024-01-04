@@ -76,6 +76,10 @@ docker run --rm -p 80:8080 -e SWAGGER_JSON=/k8s-swagger.json -v $(pwd)/k8s-swagg
 
 After this you can reach http://localhost and view the results
 
+#### ZSH-KUBECTL-PROMPT
+
+[zsh-kubectl-prompt](https://github.com/superbrothers/zsh-kubectl-prompt) is a plugin for zsh to have the kubectl context at all times in your terminal
+
 ```shell
 docker run --rm -it -v $KUBECONFIG:/root/.kube/config quay.io/derailed/k9s
 ```
