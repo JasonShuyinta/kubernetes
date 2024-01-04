@@ -19,6 +19,15 @@ That's why when using Kubernetes Cluster, you cannot just build your docker imag
 
 That's why it is better to use a customer container registry from where to retrieve the images each time you want to deploy something.
 
+##### Private Registry
+
+If you want to use minikube with local docker images, you have to define the imagePullPolicy as "Never", and/or define the --insecure-registry flag when starting your minikube cluster.
+
+As an example:
+```shell
+minikube start --insecure-registry="https://private-registry:8080"
+```
+
 ## Useful links
 
 - [Sealed Secrets for K8s with GitOps](https://piotrminkowski.com/2022/12/14/sealed-secrets-on-kubernetes-with-argocd-and-terraform/)
