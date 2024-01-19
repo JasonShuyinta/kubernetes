@@ -79,6 +79,10 @@ When using local volumes, it is recommended to create a StorageClass with *volum
 
 An external static provisioner can be run separately for improved management of the local volume lifecycle. Note that this provisioner does not support dynamic provisioning yet. For an example on how to run an external local provisioner, see the local volume provisioner user guide.
 
+*Important*: Deleting a PVC will automatically delete also the PV bound to it that has a *retainPolicy: Delete*. In order to maintain the PV even at PVC deletion you need to have the PV with *retainPolicy: Retain*, in this way you don't lose data even in case the PVC gets deleted. 
+
+The problem with this is that you need manually tell the PV you want it to bound to a specific PVC by using *claimRef* field, or you can even declare the *volumeName* in the PVC yaml file. 
+
 #### Local StorageClass
 ```yaml
 apiVersion: storage.k8s.io/v1
