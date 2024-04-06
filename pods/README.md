@@ -36,3 +36,16 @@ kubectl exec -it [podname] -- sh
 kubectl delete -f [pod.yaml]
 kubectl delete pod [podname]
 ```
+
+In order to get logs of a specific container you can run the following command:
+
+```shell
+# Get logs of pod with 1 container
+kubectl logs [podname]
+
+# Get logs of pod with multiple containers
+kubectl logs [podname] -c [containername]
+
+# Get logs of killed pod
+kubectl logs [podname] --previous
+```
